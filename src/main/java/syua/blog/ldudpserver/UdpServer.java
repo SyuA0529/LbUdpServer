@@ -90,7 +90,7 @@ public class UdpServer {
 			try (InputStream inputStream = socket.getInputStream();
 				 OutputStream outputStream = socket.getOutputStream()) {
 				outputStream.write(objectMapper.writeValueAsBytes(
-					new ControlRequest(type, Protocol.TCP, port)));
+					new ControlRequest(type, Protocol.UDP, port)));
 				outputStream.flush();
 				socket.shutdownOutput();
 				byte[] bytes = inputStream.readAllBytes();
