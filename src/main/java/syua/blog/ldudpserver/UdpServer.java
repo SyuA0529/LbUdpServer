@@ -74,7 +74,7 @@ public class UdpServer {
 				doControlRequest(ControlType.UNREGISTER);
 				responseData = "success unregister".getBytes(StandardCharsets.UTF_8);
 			} else {
-				responseData = ("[" + InetAddress.getLocalHost().getHostAddress() + " " + port + "] " + name)
+				responseData = ("[" + InetAddress.getLocalHost().getHostAddress() + " " + port + "] " + name + "\n")
 					.getBytes(StandardCharsets.UTF_8);
 			}
 			DatagramPacket responsePacket = new DatagramPacket(responseData, responseData.length,
