@@ -69,12 +69,12 @@ public class UdpServer {
 			byte[] responseData = null;
 			if (new String(clientData, StandardCharsets.UTF_8).equals("register")) {
 				doControlRequest(ControlType.REGISTER);
-				responseData = "success register".getBytes(StandardCharsets.UTF_8);
+				responseData = "success register\n".getBytes(StandardCharsets.UTF_8);
 			} else if (new String(clientData, StandardCharsets.UTF_8).equals("unregister")) {
 				doControlRequest(ControlType.UNREGISTER);
-				responseData = "success unregister".getBytes(StandardCharsets.UTF_8);
+				responseData = "success unregister\n".getBytes(StandardCharsets.UTF_8);
 			} else {
-				responseData = ("[" + InetAddress.getLocalHost().getHostAddress() + " " + port + "] " + name)
+				responseData = ("[" + InetAddress.getLocalHost().getHostAddress() + " " + port + "] " + name + "\n")
 					.getBytes(StandardCharsets.UTF_8);
 			}
 			DatagramPacket responsePacket = new DatagramPacket(responseData, responseData.length,
