@@ -46,8 +46,8 @@ public class HealthCheckRequestHandler {
 			log.info("Health Check {}", request);
 			HealthCheckResponse response = new HealthCheckResponse();
 			response.setHealthy();
-			DatagramPacket responsePacket = new DatagramPacket(new byte[Protocol.UDP.getMaxReceiveSize()],
-				Protocol.UDP.getMaxReceiveSize(), clientPacket.getAddress(), clientPacket.getPort());
+			byte[] healthCheckResponse = objectMapper.writeValueAsBytes(response);
+			DatagramPacket responsePacket = new DatagramPacket(healthCheckResponse, healthCheckResponse.length, clientPacket.getPort());
 			socket.send(responsePacket);
 		} catch (IOException e) {
 			e.printStackTrace();
