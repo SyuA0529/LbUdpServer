@@ -47,7 +47,8 @@ public class HealthCheckRequestHandler {
 			HealthCheckResponse response = new HealthCheckResponse();
 			response.setHealthy();
 			byte[] healthCheckResponse = objectMapper.writeValueAsBytes(response);
-			DatagramPacket responsePacket = new DatagramPacket(healthCheckResponse, healthCheckResponse.length, clientPacket.getPort());
+			DatagramPacket responsePacket =
+				new DatagramPacket(healthCheckResponse, healthCheckResponse.length, clientPacket.getAddress(), clientPacket.getPort());
 			socket.send(responsePacket);
 		} catch (IOException e) {
 			e.printStackTrace();
