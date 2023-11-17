@@ -29,6 +29,7 @@ public class HealthCheckRequestHandler {
 		new Thread(() -> {
 			try (DatagramSocket serverSocket = new DatagramSocket(port)) {
 				while (true) {
+					log.info("ready to health check - {}", port);
 					DatagramPacket clientPacket = SocketReadUtils.readUdpAllBytes(serverSocket);
 					threadPool.execute(() -> handleRequest(serverSocket, clientPacket));
 				}
