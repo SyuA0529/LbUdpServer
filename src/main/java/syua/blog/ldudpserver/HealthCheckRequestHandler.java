@@ -41,6 +41,7 @@ public class HealthCheckRequestHandler {
 
 	private void handleRequest(DatagramSocket socket, DatagramPacket clientPacket) {
 		try {
+			log.info("receive health check");
 			HealthCheckRequest request = objectMapper.readValue(clientPacket.getData(), HealthCheckRequest.class);
 			log.info("Health Check {}", request);
 			HealthCheckResponse response = new HealthCheckResponse();

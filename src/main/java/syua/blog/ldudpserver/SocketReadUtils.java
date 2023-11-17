@@ -7,8 +7,10 @@ import java.net.DatagramSocket;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
+import lombok.extern.slf4j.Slf4j;
 import syua.blog.ldudpserver.dto.Protocol;
 
+@Slf4j
 public class SocketReadUtils {
 
 	private SocketReadUtils() {
@@ -30,6 +32,7 @@ public class SocketReadUtils {
 	public static DatagramPacket readUdpAllBytes(DatagramSocket socket) throws IOException {
 		DatagramPacket resultPacket = new DatagramPacket(new byte[Protocol.UDP.getMaxReceiveSize()],
 			Protocol.UDP.getMaxReceiveSize());
+		log.info("wait to receive");
 		socket.receive(resultPacket);
 		return resultPacket;
 	}
